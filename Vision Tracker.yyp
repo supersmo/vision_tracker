@@ -40,7 +40,7 @@
     {"id":{"name":"obj_button_results","path":"objects/obj_button_results/obj_button_results.yy",},},
     {"id":{"name":"obj_button_test","path":"objects/obj_button_test/obj_button_test.yy",},},
     {"id":{"name":"obj_center_marker","path":"objects/obj_center_marker/obj_center_marker.yy",},},
-    {"id":{"name":"obj_test_manager","path":"objects/obj_test_manager/obj_test_manager.yy",},},
+    {"id":{"name":"obj_vision_test_manager","path":"objects/obj_vision_test_manager/obj_vision_test_manager.yy",},},
     {"id":{"name":"obj_window_manager","path":"objects/obj_window_manager/obj_window_manager.yy",},},
     {"id":{"name":"rm_eye_test","path":"rooms/rm_eye_test/rm_eye_test.yy",},},
     {"id":{"name":"rm_main_menu","path":"rooms/rm_main_menu/rm_main_menu.yy",},},
