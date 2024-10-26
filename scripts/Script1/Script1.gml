@@ -11,14 +11,26 @@ surface_resize(application_surface, 1920, 1080);
 function draw_result(_grid_result) 
 {
 	draw_clear(c_black)
-	draw_set_colour(c_white);
+	var _color = c_white;
 	for (var _x=0; _x < ds_grid_width(_grid_result); _x++)
 	{
 		for (var _y=0; _y < ds_grid_height(_grid_result); _y++)
 		{
-			val = _grid_result[# _x,_y]
-			var _coordinates = get_rect_coordinates(_x, _y, grid_cell_width, grid_cell_height)
-			draw_set_alpha((max_attempts - val)/max_attempts);
+			var _value = _grid_result[# _x,_y]
+			switch (_value) {
+				case RESULT.NOT_DISPLAYED:
+					_color = c_red;
+					break;
+				case RESULT.SEEN:
+					_color = c_black;
+					break;
+				case RESULT.NOT_SEEN:
+					_color = c_white;
+					break;
+			} 
+			draw_set_color(_color);
+			
+			var _coordinates = get_coordinates(_x, _y, grid_cell_width, grid_cell_height)
 			draw_rectangle(_coordinates[0], _coordinates[1],_coordinates[2], _coordinates[3], false);
 	    };
 	};

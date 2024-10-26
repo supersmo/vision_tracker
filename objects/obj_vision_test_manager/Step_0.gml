@@ -1,22 +1,24 @@
 if (mouse_check_button_pressed(mb_left)) 
 {
 	if (draw_state  == DRAW_STATE.DRAW_TARGET) {
-		ds_grid_add(grid_result, grid_x, grid_y, 1);
+		ds_grid_set(grid_result, grid_x, grid_y, RESULT.SEEN);
+		set_next_target();
 	}
-	if (draw_state == DRAW_STATE.DRAW_NONE || draw_state == DRAW_STATE.DRAW_TARGET) {
+	else if (draw_state == DRAW_STATE.DRAW_NONE) {
 		set_next_target();
 	}
 }
 else if (mouse_check_button_pressed(mb_right)) 
 {
 	if (draw_state == DRAW_STATE.DRAW_NONE || draw_state == DRAW_STATE.DRAW_TARGET) {
+		ds_grid_set(grid_result, grid_x, grid_y, RESULT.NOT_SEEN);
 		set_next_target();
 	}
 }
 
 function set_next_target() 
 {
-	var _targets_left = ds_grid_get_min(grid_times_shown, 0, 0, grid_width, grid_height) < max_attempts;
+	var _targets_left = ds_grid_get_min(grid_result, 0, 0, grid_width, grid_height) == RESULT.NOT_DISPLAYED;
 	if  (_targets_left)
 	{
 		var _target_found = false;
@@ -26,14 +28,11 @@ function set_next_target()
 			grid_x = irandom(grid_width -1);
 			grid_y = irandom(grid_height -1);
 		
-			// If the cell has been shown less than max times
-			if (ds_grid_get(grid_times_shown, grid_x, grid_y) < max_attempts)
+			// If the cell has not been displayed before
+			if (ds_grid_get(grid_result, grid_x, grid_y) == RESULT.NOT_DISPLAYED)
 			{
-				// Record that it has been shown
-				ds_grid_add(grid_times_shown, grid_x, grid_y, 1);
-				
-				// Store the corresponding screen coordinates so the circle can be drawn in the draw event
-				rect_coordinates = get_rect_coordinates(grid_x, grid_y, grid_cell_width, grid_cell_height);
+				// Store the corresponding screen coordinates so the target can be drawn in the draw event
+				rect_coordinates = get_coordinates(grid_x, grid_y, grid_cell_width, grid_cell_height);
 				_target_found = true;
 				draw_state = DRAW_STATE.DRAW_TARGET
 			}
@@ -42,6 +41,16 @@ function set_next_target()
 	// End of vision test
 	else
 	{
+		show_debug_message( "-----");
+		for( var _i = 0; _i < ds_grid_height( grid_result); ++_i){
+		    var _str = "";
+		    for( var _j = 0; _j < ds_grid_width( grid_result); ++_j){
+		       _str += string( grid_result[# _j, _i]) + "\t\t";
+		    }
+		    show_debug_message( _str);
+		}
+		show_debug_message( "-----");
+		
 		// Switch state to draw result
 		draw_state = DRAW_STATE.DRAW_RESULT
 		
@@ -52,7 +61,7 @@ function set_next_target()
 	}
 }
 
-function get_rect_coordinates(_grid_x, _grid_y, _grid_cell_width, _grid_cell_height) {
+function get_coordinates(_grid_x, _grid_y, _grid_cell_width, _grid_cell_height) {
 	var _x1 = _grid_x * _grid_cell_width;
 	var _y1 = _grid_y * _grid_cell_height;
 	var _x2 = _x1 + _grid_cell_width;
