@@ -3,17 +3,14 @@
 enum DRAW_STATE
 {
     DRAW_NONE,
-    DRAW_CIRCLE,
+    DRAW_TARGET,
     DRAW_RESULT,
 }
 
 draw_state = DRAW_STATE.DRAW_NONE
 
 max_attempts = 1;
-/*
-grid_width = 3;
-grid_height = 3;
-*/
+
 grid_width = 16;
 grid_height = 9;
 
@@ -27,7 +24,7 @@ grid_x = 0;
 grid_y = 0;
 
 //Coordinates to draw a circle
-circle_coordinates = [0,0];
+rect_coordinates = [0,0];
 
 should_save_screenshot = false
 

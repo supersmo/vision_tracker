@@ -17,9 +17,9 @@ function draw_result(_grid_result)
 		for (var _y=0; _y < ds_grid_height(_grid_result); _y++)
 		{
 			val = _grid_result[# _x,_y]
-			var _coordinates = get_coordinates(_x, _y, grid_cell_width, grid_cell_height)
+			var _coordinates = get_rect_coordinates(_x, _y, grid_cell_width, grid_cell_height)
 			draw_set_alpha((max_attempts - val)/max_attempts);
-			draw_circle(_coordinates[0], _coordinates[1], grid_cell_width/2, false);
+			draw_rectangle(_coordinates[0], _coordinates[1],_coordinates[2], _coordinates[3], false);
 	    };
 	};
 	draw_set_alpha(1)
