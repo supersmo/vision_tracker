@@ -9,7 +9,7 @@ enum DRAW_STATE
 
 draw_state = DRAW_STATE.DRAW_NONE
 
-max_attempts = 3;
+max_attempts = 1;
 /*
 grid_width = 3;
 grid_height = 3;
