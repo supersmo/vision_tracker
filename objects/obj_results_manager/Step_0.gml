@@ -19,5 +19,6 @@ else if (mouse_check_button_pressed(mb_right) || keyboard_check_pressed(vk_right
 	{
 		current_file_index++
 		sprite_replace(sprite_result, result_files[current_file_index], 1, false, false, 0, 0);
+		
 	}
 }

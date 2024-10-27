@@ -21,3 +21,5 @@ switch (draw_state)
     default:
         break;
 }
+
+reset_draw_properties();

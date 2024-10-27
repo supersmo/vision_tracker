@@ -41,8 +41,7 @@ function draw_result(_grid_result, _draw_area_to_test)
 			draw_rectangle(_coordinates[0], _coordinates[1],_coordinates[2], _coordinates[3], false);
 	    };
 	};
-	draw_set_alpha(1)
-	draw_set_colour(c_white);
+	reset_draw_properties();
 }
 
 function save_result_as_image() 
@@ -76,4 +75,11 @@ function get_occurrences_in_grid(_grid, _val) {
 		}
 	}
 	return _count;
+}
+
+function reset_draw_properties() {
+	draw_set_alpha(1);
+	draw_set_color(c_white);
+	draw_set_halign(fa_left);
+	draw_set_valign(fa_top);
 }
