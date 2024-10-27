@@ -69,7 +69,8 @@ function set_next_target()
 		//show_debug_message("result: {0}", grid_to_string(grid_result));
 
 		iteration++;
-		targets_left = get_occurrences_in_grid(grid_result, RESULT.NOT_DISPLAYED);
+		iteration_targets = get_occurrences_in_grid(grid_result, RESULT.NOT_DISPLAYED);
+		targets_left = iteration_targets;
 		
 		draw_state = DRAW_STATE.DRAW_ITERATION_INFO
 		

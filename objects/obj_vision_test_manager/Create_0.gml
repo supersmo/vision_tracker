@@ -21,7 +21,8 @@ var _grid_width = 2;
 var _grid_height = 2;
 grid_result = ds_grid_create(_grid_width, _grid_height);
 ds_grid_clear(grid_result, RESULT.NOT_DISPLAYED);
-targets_left = get_occurrences_in_grid(grid_result, RESULT.NOT_DISPLAYED);
+iteration_targets = get_occurrences_in_grid(grid_result, RESULT.NOT_DISPLAYED);
+targets_left = iteration_targets;
 grid_cell_width = room_width/_grid_width;
 grid_cell_height = room_height/_grid_height;
 

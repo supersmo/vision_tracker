@@ -83,3 +83,34 @@ function reset_draw_properties() {
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_top);
 }
+
+//Reference: https://forum.gamemaker.io/index.php?threads/is-there-a-way-to-draw-a-partial-circle-like-a-pie-slice.39662/#post-244241
+function draw_pie(_x ,_y ,_value, _max, _colour, _radius, _transparency) {
+	if (_value > 0) { // no point even running if there is nothing to display (also stops /0
+	    var _i, _len, _tx, _ty, _val;
+    
+	    var _number_of_sections = 60 // there is no draw_get_circle_precision() else I would use that here
+	    var _size_of_section = 360/_number_of_sections
+    
+	    _val = (_value/_max) * _number_of_sections
+    
+	    if (_val > 1) { // HTML5 version doesnt like triangle with only 2 sides
+    
+	        draw_set_colour(_colour);
+	        draw_set_alpha(_transparency);
+        
+	        draw_primitive_begin(pr_trianglefan);
+	        draw_vertex(_x, _y);
+        
+	        for(_i=0; _i<=_val; _i++) {
+	            _len = (_i*_size_of_section)+90; // the 90 here is the starting angle
+	            _tx = lengthdir_x(_radius, _len);
+	            _ty = lengthdir_y(_radius, _len);
+	            draw_vertex(_x - _tx, _y + _ty);
+	        }
+	        draw_primitive_end();
+        
+	    }
+	    reset_draw_properties();
+	}
+}
