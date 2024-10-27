@@ -6,5 +6,8 @@ if (keyboard_check_pressed(vk_enter) && keyboard_check(vk_alt))
 
 if (keyboard_check_pressed(vk_escape)) 
 {
-	room_goto(rm_main_menu);
+	//rm_eye_test already handles escape presses
+	if (room != rm_eye_test) {
+		room_goto(rm_main_menu);
+	}
 }
