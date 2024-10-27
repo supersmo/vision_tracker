@@ -1,6 +1,6 @@
 name: Continuous Integration for Windows export
 on: 
-  # push: #Uncomment this line to run the workflow on push
+  push: #Uncomment this line to run the workflow on push
   workflow_dispatch: #This line allows you to run the workflow manually from the GitHub Actions page
   workflow_call: #This line allows you to run the workflow from another workflow
 jobs:
